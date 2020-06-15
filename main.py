@@ -46,4 +46,7 @@ class mainGame:
 
 game = mainGame((800,900))
 
+coords = classXYCordinates.Vector2(10,20)
+print (coords.X)
+
 game.runGame()
