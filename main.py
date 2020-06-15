@@ -1,8 +1,10 @@
-import pygame, sys
+import pygame, sys, classXYCordinates
 
 class mainGame:
 
      def __init__(self, screenSize = (100,100)):
+          self.screenSize = screenSize
+
           pygame.init() # iniciar pygame
           pygame.display.set_caption("Learn python") # ponerle arriba
 
@@ -22,9 +24,7 @@ class mainGame:
                msgim_center_x //= 2
                msgim_center_y //= 2
           
-               self.screenSurface.blit(msg_image, (
-                    self.screenSize[0] // 2-msgim_center_x,
-                    self.screenSize[1] // 2-msgim_center_y+i*22))
+               self.screenSurface.blit(msg_image, ( self.screenSize[0] // 2-msgim_center_x, self.screenSize[1] // 2-msgim_center_y+i*22))
 
      def runGame(self):
 
