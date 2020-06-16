@@ -7,11 +7,18 @@ from player import Player
 class mainGame:
 
      def __init__(self, screenSize = (640,320)):
+          """The main part of the game
+
+          takes in the values of the screen, as a touple in (X,Y) format. 
+          default is (640,320)
+
+          ! this just starts pygame, it does not run anything else, to run pygame use mainGame.runGame()
+          """
           self.sprites = Images()
           self.screenSize = screenSize
 
-          pygame.init() # iniciar pygame
-          pygame.display.set_caption("Learn python") # ponerle arriba
+          pygame.init() # start pygame
+          pygame.display.set_caption("Learn python") # add text to window
 
           self.screenSurface = pygame.display.set_mode(screenSize)
           self.FPS = pygame.time.Clock()
@@ -19,6 +26,7 @@ class mainGame:
           
 
      def _center_msg(self, msg):
+          """ creates a centalized msg on screen"""
           for i, line in enumerate(msg.splitlines()):
                msg_image =  pygame.font.Font(
                     pygame.font.get_default_font(), 12).render(
@@ -78,16 +86,8 @@ class mainGame:
           
           pygame.display.update()
                     
-
 game = mainGame()
 
 game.drawLevel()
 
-# game.player.rotateLeft()
-# game.player.move()
-# game.player.rotateRight()
-# game.player.move()
-# game.player.rotateLeft()
-# game.player.move()
-
-
+game.runGame()
