@@ -4,6 +4,9 @@ class Images:
      images = {}
 
      def __init__(self):
+          """Cretes an image dictionary ready to be used in pygame. 
+
+          ONLY PNG IMAGES ARE SUPPORTED"""
           print('loading images')
           sprites = []
           for root, dirs, files in os.walk("images", topdown=False):

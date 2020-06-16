@@ -3,6 +3,14 @@ import pygame
 
 class Player:
      def __init__(self, level, draw):
+          """Player class.
+          Only one stance should exist, as more than 1 might interfear. Use from main.py only
+          
+          Existing commands are:
+               move() -> moves the plaver one tile to the front, if whater is non existant
+               rotateLeft() -> rotates the player left
+               rotateRight() -> rotates the player right
+               """
           self.pos = Vector2()
           self.flagPos = Vector2()
           self.facing = 'down'

@@ -39,7 +39,7 @@ class mainGame:
                self.screenSurface.blit(msg_image, ( self.screenSize[0] // 2-msgim_center_x, self.screenSize[1] // 2-msgim_center_y+i*22))
 
      def runGame(self):
-
+          """Main function of pygame. All events are handeled here"""
           while True:
                for event in pygame.event.get():
                     if event.type == pygame.QUIT:
@@ -51,15 +51,25 @@ class mainGame:
                self.FPS.tick(15)
 	
      def Quitify(self):
-	     self._center_msg("Exiting...")
-	     pygame.display.update()
-	     pygame.quit()
-	     sys.exit("user exit")
+          """Quits, what did you expect?
+          """
+          self._center_msg("Exiting...")
+          pygame.display.update()
+          pygame.quit()
+          sys.exit("user exit")
 
      def drawObject(self, pos = Vector2(), img = "grass tile.png"):
+          """Draws an image from dictionary of images. 
+          Takes in agument pos as Vector2 type.(position is with tileset, not pixelwise) 
+          img argument is the image name. If left blank, default is grass tile."""
           self.screenSurface.blit(self.sprites.images[img], (pos.X * 32,pos.Y * 32))
 
      def drawLevel(self,level = Level()):
+          """ draws a level of type level.
+          Usage:
+               drawLevel(Level('nameOfLevel.txt'))
+               -> if 'level' argument is left blank, default level will be loaded
+               """
           self.currentLevel = level
           self.player = Player(self.currentLevel ,self.drawObject)
           for x in range(0,level.width): 
@@ -88,6 +98,14 @@ class mainGame:
                     
 game = mainGame()
 
-game.drawLevel()
+game.drawLevel("levels/1.txt")
+
+game.player.rotateLeft()
+game.player.move()
+game.player.rotateRight()
+game.player.move()
+game.player.rotateLeft()
+game.player.move()
+game.player.move()
 
 game.runGame()
