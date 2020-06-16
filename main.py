@@ -1,8 +1,14 @@
-import pygame, sys, classXYCordinates
+import pygame, sys
+from classXYCordinates import Vector2
+from images.imageDict import Images
+from levelLoader import Level
+from player import Player
 
 class mainGame:
 
-     def __init__(self, screenSize = (100,100)):
+     def __init__(self, screenSize = (640,320)):
+          self.sprites = Images()
+          print(self.sprites.images)
           self.screenSize = screenSize
 
           pygame.init() # iniciar pygame
@@ -11,8 +17,7 @@ class mainGame:
           self.screenSurface = pygame.display.set_mode(screenSize)
           self.FPS = pygame.time.Clock()
 
-     def _main(self):
-          print('lol')
+          self.player = Player()
 
      def _center_msg(self, msg):
           for i, line in enumerate(msg.splitlines()):
@@ -44,9 +49,40 @@ class mainGame:
 	     pygame.quit()
 	     sys.exit("user exit")
 
-game = mainGame((800,900))
+     def drawLevel(self,level = Level()):
+          self.currentLevel = level
+          for y in range(0,level.width):
+               for x in range(0,level.height):
+                    try:
+                         if level.level[x][y] == 'G':
+                              self.screenSurface.blit(self.sprites.images["grass tile.png"], (y * 32,x * 32))
+                         elif level.level[x][y] == 'W':
+                              self.screenSurface.blit(self.sprites.images["water tile.png"], (y * 32,x * 32))
+                         elif level.level[x][y] == 'M':
+                              self.screenSurface.blit(self.sprites.images["grass tile.png"], (y * 32,x * 32))
+                              self.screenSurface.blit(self.sprites.images["flag-2.png"], (y * 32,x * 32))
+                              self.player.flagPos = Vector2(x,y)
+                         elif level.level[x][y] == 'P':
+                              self.screenSurface.blit(self.sprites.images["grass tile.png"], (y * 32,x * 32))
+                              self.screenSurface.blit(self.sprites.images["Player-1.png"], (y * 32,x * 32))
+                              self.player.pos = Vector2(x,y)
+                              self.currentLevel[x][y] = 'G'
+                         elif level.level[x][y] == 'S':
+                              self.screenSurface.blit(self.sprites.images["grass tile.png"], (y * 32,x * 32))
+                              self.screenSurface.blit(self.sprites.images["Crystal.png"], (y * 32,x * 32))
+                              self.player.flagPos = Vector2(x,y)
+                              self.player.totalCrystalCount += 1
+                    except:
+                         print ('error in', x,y)
+                    
 
-coords = classXYCordinates.Vector2(10,20)
+game = mainGame()
+
+coords = Vector2(10,20)
 print (coords.X)
+
+game.drawLevel()
+
+print(game.player.totalCrystalCount)
 
 game.runGame()

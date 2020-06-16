@@ -1,0 +1,17 @@
+a file format to create a new level consits of 3 parts, X wisth value, Y width value, and the level itself. 
+To create a level, the tilemap will be placed as follows:
+     G = grass tile
+     W = water tile
+     M = goal (in this case, the goal will be randerized as different sprite, with a background grass tile)
+     P = player (in this case, the goal will be randerized as different sprite, with a background grass tile)
+     S = special tile (a gem will be added to a grass tile. The gems will get automatically added to a counter, if none are present, no gem requirement will be needed)
+
+
+An example to the file is:
+4 (meaning its 4 tiles tall)
+5 (meaning its 5 tiles wide)
+WGGGG
+GGPGG
+GGMGG
+GGGGW
+(and the 'G' represents each tile. anything outside of the specified are by the first 2 values will be ignored)
