@@ -17,9 +17,11 @@ class Player:
           self.totalCrystalCount = 0
           self.crystalsCollected = 0
           self.level = level.level
-          self.draw = draw
+          self.width = level.width
+          self.draw = draw #draw object para que pueda dibujar cosas el jugador
 
      def move(self, spaces = 1):
+          """Moves the player on the direction its facing. Returns True if is on goal && has collected all gems."""
           if self.facing == 'down':
                try:
                     if self.level[self.pos.Y + 1][self.pos.X] != 'W':
@@ -65,9 +67,13 @@ class Player:
           try:
                if self.level[self.pos.Y][self.pos.X] == 'S':
                     self.crystalsCollected += 1
-                    self.level[self.pos.Y] = self.level[self.pos.Y][:self.pos.X] + 'G' + self.level[self.pos.Y][self.pos.X + 1:] # esta raro pero solo remplaza cosas
+                    self.level[self.pos.Y] = self.level[self.pos.Y][:self.pos.X] + 'G' + self.level[self.pos.Y][self.pos.X + 1:] # Used to replace a character in a string, to delete the crystal and not having doubles.
+
+                    self.draw(Vector2(self.width * 32 + 7,101) , str(self.crystalsCollected) + ' / ' + str(self.totalCrystalCount), False, Vector2(64,12)) # updates the amount of crystals collected
+
                     if self.crystalsCollected == self.totalCrystalCount:
                          self.draw(self.flagPos, "flag-1.png")
+                         
                elif self.level[self.pos.Y][self.pos.X] == 'M' and self.crystalsCollected == self.totalCrystalCount:
                     print('level finished, congratulations')
                     return(True)
@@ -76,6 +82,7 @@ class Player:
                print ('somehow youve done it, and player is out of bounds')
      
      def rotateLeft(self):
+          """Rotates..."""
           if self.facing == 'left':
                self.facing = 'down'
           elif self.facing == 'down':
@@ -87,6 +94,7 @@ class Player:
           self.drawPlayer()
 
      def rotateRight(self):
+          """Rotates..."""
           if self.facing == 'left':
                self.facing = 'up'
           elif self.facing == 'down':
@@ -98,7 +106,14 @@ class Player:
           self.drawPlayer()
      
      def drawPlayer(self):
+          """Helper to draw the player always on the screen the correct way."""
           self.draw(self.pos)
+          if self.level[self.pos.Y][self.pos.X] == 'M':
+               if self.crystalsCollected == self.totalCrystalCount:
+                    self.draw(self.pos, "flag-1.png")
+               else:
+                    self.draw(self.pos, "flag-2.png")
+
           if self.facing == 'left':
                self.draw(self.pos, "Player-1.png")
           elif self.facing == 'down':
