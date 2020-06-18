@@ -54,8 +54,16 @@ class mainGame:
                for event in pygame.event.get():
                     if event.type == pygame.QUIT:
                          self.Quitify()
-                    # elif event.type == pygame.KEYDOWN:
 
+                    if event.type == pygame.KEYDOWN:
+                         if event.key == pygame.K_w:
+                              self.player.move()
+                         if event.key == pygame.K_a:
+                              self.player.rotateLeft()
+                         if event.key == pygame.K_d:
+                              self.player.rotateRight()
+
+                         
                
                pygame.display.update()
                self.FPS.tick(15)
@@ -126,14 +134,14 @@ game = mainGame((700,400))
 
 game.drawLevel()
 
-game.player.move()
-game.player.rotateLeft()
-game.player.move()
-game.player.rotateRight()
-game.player.move()
-game.player.rotateLeft()
-game.player.move()
-game.player.move()
+# game.player.move()
+# game.player.rotateLeft()
+# game.player.move()
+# game.player.rotateRight()
+# game.player.move()
+# game.player.rotateLeft()
+# game.player.move()
+# game.player.move()
 
 
 game.runGame()
