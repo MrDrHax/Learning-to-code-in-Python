@@ -15,9 +15,9 @@ To run the game, simply run the __init__ file
 
 You can use these commands while on the pygame window:
 
-  p - play the game
-  l - load game into string
-  n - next level
-  b - previous level
+ p - play the game
+ l - load game into string
+ n - next level
+ b - previous level
 
 Thanks a lot, I hope you have fun!
