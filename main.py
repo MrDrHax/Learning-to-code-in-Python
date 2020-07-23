@@ -147,8 +147,8 @@ class mainGame:
                self.screenSurface.blit(self.sprites.images["flag-1.png"], (self.player.flagPos.X * 32,self.player.flagPos.Y * 32))
           
           self.screenSurface.blit(self.sprites.images["Crystal.png"], (self.currentLevel.width * 32 + 16, 16))
-          game.drawMsg("Crystals\nobtained:\n\n" + str(self.player.crystalsCollected) + ' / ' + str(self.player.totalCrystalCount), Vector2(self.currentLevel.width * 32 + 7, 50))
-          game.drawMsg("Currently running:", Vector2(10, self.currentLevel.height * 32 + 10))
+          self.drawMsg("Crystals\nobtained:\n\n" + str(self.player.crystalsCollected) + ' / ' + str(self.player.totalCrystalCount), Vector2(self.currentLevel.width * 32 + 7, 50))
+          self.drawMsg("Currently running:", Vector2(10, self.currentLevel.height * 32 + 10))
           pygame.display.update()
 
      def configVars(self):
