@@ -21,3 +21,6 @@ You can use these commands while on the pygame window:
  b - previous level
 
 Thanks a lot, I hope you have fun!
+
+this work is protected by the Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)
+you are free to modify or redestribute anything, as long as it is for non-comercial use
