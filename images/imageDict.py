@@ -11,7 +11,6 @@ class Images:
           sprites = []
           for root, dirs, files in os.walk("images", topdown=False):
                for name in files:
-                    print(name)
                     if name.endswith('.png'):
                          sprites.append(name)
 

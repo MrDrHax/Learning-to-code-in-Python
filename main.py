@@ -224,14 +224,3 @@ class mainGame:
           dirname = os.path.dirname(__file__)
           filename = os.path.join(dirname, self.levelLoader.totalFiles['_cashFile'])
           os.startfile(filename)
-
-                    
-game = mainGame((700,400))
-
-game.drawLevel()
-
-game.configVars()
-
-game.changeLevel(0,False)
-
-game.runGame()
