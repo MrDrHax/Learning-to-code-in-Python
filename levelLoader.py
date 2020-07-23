@@ -21,3 +21,4 @@ class Level:
                     self.width = int(lines[0])
                     del lines[0]
                     self.level = lines
+

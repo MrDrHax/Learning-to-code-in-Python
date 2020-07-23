@@ -1,0 +1,13 @@
+'''
+Now, things are starting to get a bit harder
+
+to help with keeping things organized, use #
+
+# makes a comment to your code
+anything that follows after # will not be read by the computer, 
+use this to keep your code looking nice and understandable
+
+remember to use what you have learnt,
+and good luck!
+'''
+

@@ -1,0 +1,16 @@
+'''
+You are doing great!
+
+now, turning...
+
+to turn, you can use rotateRight()
+
+feel free to try it out
+
+also, you can use n(for next) or b(for back)
+to change the level you are on.
+
+If you need to see a code you did before,
+don't worry, it is automatically saved.
+'''
+

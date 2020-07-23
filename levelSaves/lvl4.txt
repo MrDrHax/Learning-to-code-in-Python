@@ -1,0 +1,53 @@
+'''
+finally, a level that will introduce you to:
+
+FUNCTIONS
+
+it has fun at the beggining, so how hard can it be?
+
+
+simillar to how you can group tie your shoes to 
+"tie your shoes", you can also grop code that gets used
+many times over and over.
+
+for example, you can group rotateRight() 3 times to 
+rotate left instead.
+
+to do so, in Python, you need to first tell the code 
+you are gonna give it a set of instructions
+
+"def" is what python has made into this.
+
+an example would be:
+
+def nameOfFunction():
+
+it is important to add the ":", to add "()" after the name,
+and DO NOT use spaces when naming it.
+
+to add anything to your function, 
+just write code below it, but use TAB to diferenciate what 
+is in the function, and what is not.
+
+def nameOfFunction():
+	doManyStuff()
+
+finally, to use your function, just call it using the name
+
+def nameOfFunction():
+	doManyStuff()
+
+nameOfFunction()
+
+I'll help you out a bit, you finish it
+'''
+
+# here I made the function, it turns right 3 times, to turn left
+
+def left():
+	rotateRight()
+	rotateRight()
+	rotateRight()
+
+
+# now use the left() function to complete the course

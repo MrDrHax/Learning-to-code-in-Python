@@ -1,8 +1,8 @@
 from classXYCordinates import Vector2
-import pygame
+import pygame, time
 
 class Player:
-     def __init__(self, level, draw):
+     def __init__(self, level, draw, msgDrawer):
           """Player class.
           Only one stance should exist, as more than 1 might interfear. Use from main.py only
           
@@ -18,16 +18,31 @@ class Player:
           self.crystalsCollected = 0
           self.level = level.level
           self.width = level.width
+          self.height = level.height
           self.draw = draw #draw object para que pueda dibujar cosas el jugador
+          self.drawMsg = msgDrawer # allows text to be written
+          self.completed = False
 
      def move(self, spaces = 1):
-          """Moves the player on the direction its facing. Returns True if is on goal && has collected all gems."""
+          """Moves the player on the direction its facing."""
+
+          self.draw(Vector2(20, self.height * 32 + 30) , "", False, Vector2(1000,20))
+
+          self.drawMsg("move()", Vector2(20, self.height * 32 + 30), size = 20)
+
+          time.sleep(1)
+          
           if self.facing == 'down':
                try:
                     if self.level[self.pos.Y + 1][self.pos.X] != 'W':
                          self.draw(self.pos)
                          self.pos.Y += 1
                          self.drawPlayer()
+                         if self.level[self.pos.Y + 1][self.pos.X] != 'M':
+                              if self.crystalsCollected == self.totalCrystalCount:
+                                   self.draw(self.flagPos, "flag-1.png")
+                              else:
+                                   self.draw(self.flagPos, "flag-2.png")
                     else:
                          print('there is water there, you will get drowned')
                except:
@@ -38,6 +53,11 @@ class Player:
                          self.draw(self.pos)
                          self.pos.X += 1
                          self.drawPlayer()
+                         if self.level[self.pos.Y + 1][self.pos.X] != 'M':
+                              if self.crystalsCollected == self.totalCrystalCount:
+                                   self.draw(self.flagPos, "flag-1.png")
+                              else:
+                                   self.draw(self.flagPos, "flag-2.png")
                     else:
                          print('there is water there, you will get drowned')
                except:
@@ -48,6 +68,11 @@ class Player:
                          self.draw(self.pos)
                          self.pos.X -= 1
                          self.drawPlayer()
+                         if self.level[self.pos.Y + 1][self.pos.X] != 'M':
+                              if self.crystalsCollected == self.totalCrystalCount:
+                                   self.draw(self.flagPos, "flag-1.png")
+                              else:
+                                   self.draw(self.flagPos, "flag-2.png")
                     else:
                          print('there is water there, you will get drowned')
                except:
@@ -58,6 +83,11 @@ class Player:
                          self.draw(self.pos)
                          self.pos.Y -= 1
                          self.drawPlayer()
+                         if self.level[self.pos.Y + 1][self.pos.X] != 'M':
+                              if self.crystalsCollected == self.totalCrystalCount:
+                                   self.draw(self.flagPos, "flag-1.png")
+                              else:
+                                   self.draw(self.flagPos, "flag-2.png")
                     else:
                          print('there is water there, you will get drowned')
                except:
@@ -75,14 +105,22 @@ class Player:
                          self.draw(self.flagPos, "flag-1.png")
                          
                elif self.level[self.pos.Y][self.pos.X] == 'M' and self.crystalsCollected == self.totalCrystalCount:
+                    self.draw(Vector2(20, self.height * 32 + 30) , "", False, Vector2(1000,20))
+                    self.drawMsg("level completed, congratulations!", Vector2(20, self.height * 32 + 30), size = 20)
                     print('level finished, congratulations')
-                    return(True)
-
+                    self.completed = True
+                    raise NameError('Completed')
+          
+          except NameError as e:
+               raise NameError('Completed')
           except:
                print ('somehow youve done it, and player is out of bounds')
      
      def rotateLeft(self):
           """Rotates..."""
+          self.draw(Vector2(20, self.height * 32 + 30) , "", False, Vector2(1000,20))
+          self.drawMsg("rotateLeft()", Vector2(20, self.height * 32 + 30), size = 20)
+          time.sleep(1)
           if self.facing == 'left':
                self.facing = 'down'
           elif self.facing == 'down':
@@ -95,6 +133,9 @@ class Player:
 
      def rotateRight(self):
           """Rotates..."""
+          self.draw(Vector2(20, self.height * 32 + 30) , "", False, Vector2(1000,20))
+          self.drawMsg("rotateRight()", Vector2(20, self.height * 32 + 30), size = 20)
+          time.sleep(1)
           if self.facing == 'left':
                self.facing = 'up'
           elif self.facing == 'down':
@@ -113,13 +154,17 @@ class Player:
                     self.draw(self.pos, "flag-1.png")
                else:
                     self.draw(self.pos, "flag-2.png")
-
-          if self.facing == 'left':
+          if self.facing == 'down':
                self.draw(self.pos, "Player-1.png")
-          elif self.facing == 'down':
+          elif self.facing == 'left':
                self.draw(self.pos, "Player-4.png")
           elif self.facing == 'right':
                self.draw(self.pos, "Player-2.png")
           elif self.facing == 'up':
                self.draw(self.pos, "Player-3.png")
+
+          for event in pygame.event.get():
+               if event.type == pygame.QUIT:
+                    self.Quitify()
+                    
           pygame.display.update()

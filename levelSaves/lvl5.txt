@@ -1,0 +1,20 @@
+'''
+Perfect!
+
+you made it, now, try using the same method to move 17 times, 
+and save infinite coppy paste.
+
+you might notice that the function is ran before all the code,
+this is because Python runs everything from top to bottom,
+if your function has not been read, it is as if it does not exist!
+so remember to add all your functions on the top.
+
+also, there is a rotateLeft(), so might as well use it
+'''
+
+# make your function here
+
+
+
+
+# then do all the other code here

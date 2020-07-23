@@ -1,0 +1,19 @@
+'''
+Welcome to learning to code in Python!
+
+here, you will (hopefully) learn how to code like a pro when you finish
+or at least at a more than basic level.
+
+To start of, try typing "move()"
+after this comment (limited by the 3 ')
+
+if you mess up, don't worry, use the key r to reset
+
+to play your code just press p
+
+note: all game keypresses have to be done while focused in the pygame window, or else, it will not be registered.
+
+Good luck!
+'''
+
+move()

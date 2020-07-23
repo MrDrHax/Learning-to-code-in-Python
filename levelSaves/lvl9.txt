@@ -1,0 +1,21 @@
+'''
+Great!
+
+now to finally get down all you have learnt, try this
+
+you can use any methods you want. 
+
+however, you can run loops inside loops, for example 
+
+for i in range(0,10):
+	move()
+	rotateRight()
+	for i in range(0,10):
+		move()
+
+		
+doing this allows you to first move and turn, then move 10 times
+and it will repeat 10 times
+
+good luck!
+'''

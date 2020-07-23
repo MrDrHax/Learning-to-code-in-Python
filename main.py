@@ -1,8 +1,10 @@
-import pygame, sys
+import pygame, sys, configparser, os, time
 from classXYCordinates import Vector2
 from images.imageDict import Images
 from levelLoader import Level
 from player import Player
+from instructionInterpreter import Interpreter as SendCode
+from fileMannager import levelLoad as LevelLoad
 
 class mainGame:
 
@@ -22,6 +24,9 @@ class mainGame:
 
           self.screenSurface = pygame.display.set_mode(screenSize)
           self.FPS = pygame.time.Clock()
+
+          self.levelLoader = LevelLoad()
+          self.sendCode = SendCode({})
 
      def _center_msg(self, msg):
           """ creates a centalized msg on screen"""
@@ -50,7 +55,11 @@ class mainGame:
 
      def runGame(self):
           """Main function of pygame. All events are handeled here"""
+          
           while True:
+               if self.player.completed:
+                    time.sleep(5)
+                    self.changeLevel()
                for event in pygame.event.get():
                     if event.type == pygame.QUIT:
                          self.Quitify()
@@ -62,8 +71,17 @@ class mainGame:
                               self.player.rotateLeft()
                          if event.key == pygame.K_d:
                               self.player.rotateRight()
-
-                         
+                         if event.key == pygame.K_l:
+                              self.levelStringToRun = self.levelLoader.cashToString()
+                         if event.key == pygame.K_p:
+                              self.levelStringToRun = self.levelLoader.cashToString()
+                              self.sendCode.runInstrucionset(self.levelStringToRun, {'move': self.player.move , 'rotateLeft': self.player.rotateLeft, 'rotateRight': self.player.rotateRight})
+                         if event.key == pygame.K_n:
+                              self.changeLevel()
+                         if event.key == pygame.K_b:
+                              self.changeLevel(-1)
+                         if event.key == pygame.K_r:
+                              self.changeLevel(0)
                
                pygame.display.update()
                self.FPS.tick(15)
@@ -97,7 +115,7 @@ class mainGame:
                """
 
           self.currentLevel = level
-          self.player = Player(self.currentLevel ,self.drawObject)
+          self.player = Player(self.currentLevel ,self.drawObject, self.drawMsg)
 
           # rezizes the screen zize to fit the level and extra stuff
           self.screenSize = (self.currentLevel.width * 32 + 64, self.currentLevel.height * 32 + 64)
@@ -124,24 +142,96 @@ class mainGame:
                               self.player.totalCrystalCount += 1
                     except Exception as e:
                          print ('error in', x , y , e)
+
+          if self.player.totalCrystalCount == 0:
+               self.screenSurface.blit(self.sprites.images["flag-1.png"], (self.player.flagPos.X * 32,self.player.flagPos.Y * 32))
           
           self.screenSurface.blit(self.sprites.images["Crystal.png"], (self.currentLevel.width * 32 + 16, 16))
           game.drawMsg("Crystals\nobtained:\n\n" + str(self.player.crystalsCollected) + ' / ' + str(self.player.totalCrystalCount), Vector2(self.currentLevel.width * 32 + 7, 50))
           game.drawMsg("Currently running:", Vector2(10, self.currentLevel.height * 32 + 10))
           pygame.display.update()
+
+     def configVars(self):
+          """
+          Updates ini file, if there is none, it creates a new one
+          """
+          self.config = configparser.ConfigParser()
+
+          try:
+               with open('config.ini', 'x') as configFile:
+                    self.config['Player info'] = {'current level' : 0}
+                    self.config['Progression'] = {'0' : False}
+
+                    self.config.write(configFile)
+
+          except:
+               print('config file already exists, oppening')
+          
+          self.config = configparser.ConfigParser()
+          self.config.read('config.ini')
+
+          print('leading level: ', self.config['Player info']['current level'])
+
+     def updateLevel(self, levelInt : int):
+          """
+          Updates ini current level variable to 'levelInt'
+          """
+          self.config['Player info']['current level'] = str(levelInt)
+          with open('config.ini', 'w') as configFile:
+               self.config.write(configFile)
+
+     def updateLevelStatus(self, levelInt : int, completed : bool):
+          """
+          Updates ini current level variable to 'levelInt'
+          """
+
+          self.config['Progression'][str(levelInt)] = str(completed)
+          with open('config.ini', 'w') as configFile:
+               self.config.write(configFile)
+
+     def changeLevel(self, amount : int = 1, save = True):
+          """
+          Changes the level entirely to one that is in a save file
+
+          Usagge:
+               amount -> amount of levels to change (default +1), can be negative
+               save -> if file is saved before changing cash (level is saved into corresponding txt file)
+
+          """
+          levelToChange = int(self.config['Player info']['current level']) + amount
+
+          # if level does not exist, do not procede 
+          try:
+               # first we save the current level
+               try:
+                    if save:
+                         self.levelLoader.saveLevel('lvl' + str(self.config['Player info']['current level']))
+                         self.updateLevelStatus(int(self.config['Player info']['current level']), self.player.completed)
+               except Exception as e:
+                    print('unable to save, unknown error...',e)
+               # then we load the next level
+               self.levelLoader.loadLvlIntoCash('lvl' + str(levelToChange))
+          except:
+               print('level does not exist... ID: ' + str(levelToChange))
+
+          # if it does exist, first update current level ID in config
+          self.updateLevel(levelToChange)
+
+          # then, load level assets, to change screen
+          self.drawLevel(Level('levels/lvl' + str(levelToChange) + '.txt'))
+
+          # oppen the txt file from the file mannager level loader 
+          dirname = os.path.dirname(__file__)
+          filename = os.path.join(dirname, self.levelLoader.totalFiles['_cashFile'])
+          os.startfile(filename)
+
                     
 game = mainGame((700,400))
 
 game.drawLevel()
 
-# game.player.move()
-# game.player.rotateLeft()
-# game.player.move()
-# game.player.rotateRight()
-# game.player.move()
-# game.player.rotateLeft()
-# game.player.move()
-# game.player.move()
+game.configVars()
 
+game.changeLevel(0,False)
 
 game.runGame()

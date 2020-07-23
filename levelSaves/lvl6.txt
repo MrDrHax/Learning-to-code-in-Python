@@ -1,0 +1,31 @@
+'''
+You are doing great!
+
+before we go into the next step, lets learn how to use loops
+
+loops come in many ways, and serve many different purposes
+
+we are gonna start with a for loop. Use this loop when you have 
+a known amount of times you want to repeat something.
+
+like now, we want to repeat move() untill we reach the crystal,
+but we know how many spaces there are
+
+to make out loop, use the following sintax
+
+for i in range(0, 10):
+	move()
+
+what we are doing here, is repeating the code inside the loop 10 times
+range makes the loop do it 10 times, for now, 
+we do not need to use the i, but later, we will se what it does.
+'''
+
+# I'll help you with the first crystal, if you want, run it to see what it does
+
+rotateLeft()
+
+for i in range(0,17):
+	move()
+
+# continue over here

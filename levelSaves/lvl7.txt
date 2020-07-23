@@ -1,0 +1,13 @@
+'''
+okay now, all things are going perfect
+
+try and make these next levels, 
+
+if something goes wrong, please let me know through github
+I'll try and fix it ASAP.
+If you have something that would make your experience better,
+I am oppened for opinions, send them to github aswell
+
+Thanks a lot
+'''
+

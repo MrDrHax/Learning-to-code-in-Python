@@ -1,0 +1,47 @@
+'''
+Now, variables
+
+variables are ways to store things, such as numbers
+
+it is identicall to math
+x = 10
+
+if we had a formula, x would now be 10 
+
+b = x + 7
+
+b would now be 17
+
+but if we ran this:
+
+x = 20
+b = x + 7
+
+b would now be 27
+
+Python allows to make many different things with variables.
+But as of now, we are gonna use integers (defined as int)
+
+so, knowing this, instead of hard coding values into our previous
+formula, let's add x
+
+for i in range(0,x)
+
+now, we can use the same code, but changing the distance that 
+we travel.
+'''
+
+# let me first make x
+
+x = 0
+
+# here, x is now 0, but we could change it later on
+
+# now to make a function
+
+def moveXAmount():
+	for i in range(0,x):
+		move
+
+# try and change x, and then call the function to make your code smaller
+
