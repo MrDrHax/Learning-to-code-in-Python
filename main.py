@@ -103,7 +103,7 @@ class mainGame:
                self.screenSurface.blit(self.sprites.images[img], (pos.X * 32,pos.Y * 32))
           else:
                pygame.draw.rect(self.screenSurface, (0,0,0) , (pos.X,pos.Y, size.X, size.Y))
-               game.drawMsg(img, pos) #Vector2(10, self.currentLevel.height * 32 + 10))
+               self.drawMsg(img, pos) #Vector2(10, self.currentLevel.height * 32 + 10))
 
 
      def drawLevel(self,level = Level()):

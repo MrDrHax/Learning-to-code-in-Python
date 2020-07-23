@@ -8,3 +8,4 @@ the parenthesis are important, since it describes that it is an action.
 This level will require you to grab a crystal.
 To do so, just get on the tile on top of it, you will grab it automatically.
 '''
+

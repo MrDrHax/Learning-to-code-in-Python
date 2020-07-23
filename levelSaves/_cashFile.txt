@@ -1,21 +1,53 @@
 '''
-Great!
+finally, a level that will introduce you to:
 
-now to finally get down all you have learnt, try this
+FUNCTIONS
 
-you can use any methods you want. 
+it has fun at the beggining, so how hard can it be?
 
-however, you can run loops inside loops, for example 
 
-for i in range(0,10):
-	move()
-	rotateRight()
-	for i in range(0,10):
-		move()
+simillar to how you can group tie your shoes to 
+"tie your shoes", you can also grop code that gets used
+many times over and over.
 
-		
-doing this allows you to first move and turn, then move 10 times
-and it will repeat 10 times
+for example, you can group rotateRight() 3 times to 
+rotate left instead.
 
-good luck!
+to do so, in Python, you need to first tell the code 
+you are gonna give it a set of instructions
+
+"def" is what python has made into this.
+
+an example would be:
+
+def nameOfFunction():
+
+it is important to add the ":", to add "()" after the name,
+and DO NOT use spaces when naming it.
+
+to add anything to your function, 
+just write code below it, but use TAB to diferenciate what 
+is in the function, and what is not.
+
+def nameOfFunction():
+	doManyStuff()
+
+finally, to use your function, just call it using the name
+
+def nameOfFunction():
+	doManyStuff()
+
+nameOfFunction()
+
+I'll help you out a bit, you finish it
 '''
+
+# here I made the function, it turns right 3 times, to turn left
+
+def left():
+	rotateRight()
+	rotateRight()
+	rotateRight()
+
+
+# now use the left() function to complete the course

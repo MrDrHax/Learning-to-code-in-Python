@@ -16,4 +16,3 @@ note: all game keypresses have to be done while focused in the pygame window, or
 Good luck!
 '''
 
-move()
