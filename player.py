@@ -22,6 +22,7 @@ class Player:
           self.draw = draw #draw object para que pueda dibujar cosas el jugador
           self.drawMsg = msgDrawer # allows text to be written
           self.completed = False
+          self.waitTime = 1
 
      def move(self, spaces = 1):
           """Moves the player on the direction its facing."""
@@ -30,7 +31,7 @@ class Player:
 
           self.drawMsg("move()", Vector2(20, self.height * 32 + 30), size = 20)
 
-          time.sleep(1)
+          time.sleep(self.waitTime)
           
           if self.facing == 'down':
                try:
@@ -120,7 +121,7 @@ class Player:
           """Rotates..."""
           self.draw(Vector2(20, self.height * 32 + 30) , "", False, Vector2(1000,20))
           self.drawMsg("rotateLeft()", Vector2(20, self.height * 32 + 30), size = 20)
-          time.sleep(1)
+          time.sleep(self.waitTime)
           if self.facing == 'left':
                self.facing = 'down'
           elif self.facing == 'down':
@@ -135,7 +136,7 @@ class Player:
           """Rotates..."""
           self.draw(Vector2(20, self.height * 32 + 30) , "", False, Vector2(1000,20))
           self.drawMsg("rotateRight()", Vector2(20, self.height * 32 + 30), size = 20)
-          time.sleep(1)
+          time.sleep(self.waitTime)
           if self.facing == 'left':
                self.facing = 'up'
           elif self.facing == 'down':
@@ -145,6 +146,24 @@ class Player:
           elif self.facing == 'up':
                self.facing = 'right'
           self.drawPlayer()
+
+     def getFacing(self):
+          return self.facing
+
+     def getPlayerPos(self):
+          return self.pos
+
+     def getFlagPos(self):
+          return self.flagPos
+
+     def getCristalsCollected(self):
+          return self.crystalsCollected
+
+     def getCristalsTotal(self):
+          return self.totalCrystalCount
+
+     def setDelayTime(self, delay = 1):
+          self.waitTime = delay
      
      def drawPlayer(self):
           """Helper to draw the player always on the screen the correct way."""

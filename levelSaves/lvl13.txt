@@ -1,0 +1,20 @@
+'''
+Another brether, just to get all sitting in
+
+If you would like to practive a bit more,
+try inserting functions into functions
+
+for example:
+
+def moveAmmount(ammount):
+	for i in range(0,ammount):
+		move()
+
+def moveBackAndFoward():
+	moveAmmount(10)
+	rotateLeft()
+	rotateLeft()
+	moveAmmount(10)
+
+and then, you can use moveBackAndFoward to get to a place and return
+'''

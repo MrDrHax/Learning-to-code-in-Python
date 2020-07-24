@@ -1,0 +1,7 @@
+'''
+Okay, sorry, that might have been a bit too much 
+Keep practicing the making and using functions 
+with variables here
+
+just as a bit of a brether
+'''

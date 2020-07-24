@@ -1,0 +1,22 @@
+'''
+OMG, the level got longer, plus, crystals appear at random
+this will take forever!
+
+from now on, levels will probably become more and more
+time consuming. To solve this, I have added a function 
+that changes the rate at which the player moves
+
+to do so, use setDelayTime()
+
+remember those parenthesis we told that we would use later?
+well, now is the time!
+
+to specify the amount of seconds each move sould take, 
+insert the number into the function.
+
+An example would be:
+setDelayTime(0.5)
+
+go ahead and try it out!
+'''
+

@@ -1,4 +1,4 @@
-import pygame, sys, configparser, os, time
+import pygame, sys, configparser, os, time, subprocess, random
 from classXYCordinates import Vector2
 from images.imageDict import Images
 from levelLoader import Level
@@ -74,8 +74,19 @@ class mainGame:
                          if event.key == pygame.K_l:
                               self.levelStringToRun = self.levelLoader.cashToString()
                          if event.key == pygame.K_p:
+                              self.changeLevel(0)
                               self.levelStringToRun = self.levelLoader.cashToString()
-                              self.sendCode.runInstrucionset(self.levelStringToRun, {'move': self.player.move , 'rotateLeft': self.player.rotateLeft, 'rotateRight': self.player.rotateRight})
+                              self.sendCode.runInstrucionset(self.levelStringToRun, {
+                                   'move': self.player.move , 
+                                   'rotateLeft': self.player.rotateLeft, 
+                                   'rotateRight': self.player.rotateRight, 
+                                   'getFacing': self.player.getFacing, 
+                                   'getPlayerPos': self.player.getPlayerPos, 
+                                   'getFlagPos': self.player.getFlagPos, 
+                                   'getCristalsCollected': self.player.getCristalsCollected, 
+                                   'getCristalsTotal': self.player.getCristalsTotal,
+                                   'setDelayTime': self.player.setDelayTime
+                              })
                          if event.key == pygame.K_n:
                               self.changeLevel()
                          if event.key == pygame.K_b:
@@ -115,6 +126,52 @@ class mainGame:
                """
 
           self.currentLevel = level
+
+          # cooses at random place of flag, also can choose special crystals before drawing anything
+          possibleLocations = []
+
+          for x in range(0,level.width): 
+               for y in range(0,level.height):
+                    try:
+                         if self.currentLevel.level[y][x] == 'A':
+                              if random.randint(0,100) > 60:
+                                   s = list(self.currentLevel.level[y])
+                                   s[x] = 'S'
+                                   self.currentLevel.level[y] = ''.join(s)
+                              else:
+                                   s = list(self.currentLevel.level[y])
+                                   s[x] = 'G'
+                                   self.currentLevel.level[y] = ''.join(s)
+                         elif self.currentLevel.level[y][x] == 'N':
+                              possibleLocations.append([x,y])
+
+                    except Exception as e:
+                         print('error in file cleaning: ', e)
+
+          if possibleLocations:
+               print('randomizing flag pos')
+               chosen = random.randint(0,possibleLocations.__len__()-1)
+
+               xy = possibleLocations[chosen]
+
+               y = possibleLocations[chosen][1]
+               x = possibleLocations[chosen][0]
+
+               s = list(self.currentLevel.level[y])
+               s[x] = 'M'
+               self.currentLevel.level[y] = ''.join(s)
+
+               del possibleLocations[chosen]
+
+               for i in possibleLocations:
+                    y = i[1]
+                    x = i[0]
+
+                    s = list(self.currentLevel.level[y])
+                    s[x] = 'G'
+                    self.currentLevel.level[y] = ''.join(s)
+
+
           self.player = Player(self.currentLevel ,self.drawObject, self.drawMsg)
 
           # rezizes the screen zize to fit the level and extra stuff
@@ -124,22 +181,28 @@ class mainGame:
           for x in range(0,level.width): 
                for y in range(0,level.height):
                     try:
-                         if level.level[y][x] == 'G':
+                         if self.currentLevel.level[y][x] == 'G':
                               self.screenSurface.blit(self.sprites.images["grass tile.png"], (x * 32,y * 32))
-                         elif level.level[y][x] == 'W':
+
+                         elif self.currentLevel.level[y][x] == 'W':
                               self.screenSurface.blit(self.sprites.images["water tile.png"], (x * 32,y * 32))
-                         elif level.level[y][x] == 'M':
+
+                         elif self.currentLevel.level[y][x] == 'M':
                               self.screenSurface.blit(self.sprites.images["grass tile.png"], (x * 32,y * 32))
+
                               self.screenSurface.blit(self.sprites.images["flag-2.png"], (x * 32,y * 32))
                               self.player.flagPos = Vector2(x,y)
-                         elif level.level[y][x] == 'P':
+
+                         elif self.currentLevel.level[y][x] == 'P':
                               self.screenSurface.blit(self.sprites.images["grass tile.png"], (x * 32,y * 32))
                               self.screenSurface.blit(self.sprites.images["Player-1.png"], (x * 32,y * 32))
                               self.player.pos = Vector2(x,y)
-                         elif level.level[y][x] == 'S':
+
+                         elif self.currentLevel.level[y][x] == 'S':
                               self.screenSurface.blit(self.sprites.images["grass tile.png"], (x * 32,y * 32))
                               self.screenSurface.blit(self.sprites.images["Crystal.png"], (x * 32,y * 32))
                               self.player.totalCrystalCount += 1
+
                     except Exception as e:
                          print ('error in', x , y , e)
 
@@ -223,4 +286,8 @@ class mainGame:
           # oppen the txt file from the file mannager level loader 
           dirname = os.path.dirname(__file__)
           filename = os.path.join(dirname, self.levelLoader.totalFiles['_cashFile'])
-          os.startfile(filename)
+          if sys.platform == "win32":
+               os.startfile(filename)
+          else: # in case it is not windows.... 
+               opener ="open" if sys.platform == "darwin" else "xdg-open"
+               subprocess.call([opener, filename])

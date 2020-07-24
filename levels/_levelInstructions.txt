@@ -5,6 +5,8 @@ To create a level, the tilemap will be placed as follows:
      M = goal (in this case, the goal will be randerized as different sprite, with a background grass tile)
      P = player (in this case, the goal will be randerized as different sprite, with a background grass tile)
      S = special tile (a gem will be added to a grass tile. The gems will get automatically added to a counter, if none are present, no gem requirement will be needed)
+     A = special tile with 40% chance of spawning
+     N = goal, but many can be added, in which case, one will be picked at random. No 'M' should be added, since it will not be considered in the rendering, leaving a chance that it does not appear at random
 
 
 An example to the file is:

@@ -1,0 +1,25 @@
+'''
+Now, learning an if statement
+if is what you use in code to ask questions
+if you have 10 years, you are a child
+if you are 20 years or older, you are an adult
+
+it is the same, ask a question, then do something with that,
+to do so, you can use many commands
+
+a == b checks if 2 things are equal
+a > b  checks if a is bigger than b
+a < b  checks if a is smaller than b
+a >= b checks if a is bigger or equal to b
+a <= b checks if a is smaller or equal to b
+a != b checks if a is NOT equal to b
+
+you can check if you have all the crystals, use:
+
+crystals = getCristalsCollected()
+total = getCristalsTotal()
+
+to get the crystals into a variable you can use
+
+NOTE: crystals will not be updated, if you want to update it, run the same code again!
+'''

@@ -1,0 +1,59 @@
+'''
+I hope you used your new power responsibly
+
+Wither way, this level is a mess, try and 
+reach the flag with the least amout on code possible!
+
+so, how did I make the speed change?
+It's easy! 
+when defining a function, you can tell it to give you
+a variable
+
+lets say I want to change the time, and I have a nice clock
+
+time = 10
+
+there, now time keeps the seconds that have passed
+but, I want to change it 
+instead of having to change time like this:
+
+time = 20
+
+I can make a function that adds time to the current time
+
+def addTime():
+	time = time + 10
+
+now, this finction can add 10 to time, but it is not very usefull
+I would have to create a different function for every time interval I need
+so instead, we can create a function that requests a number
+
+def addTime(timeToAdd):
+	
+now, the timeToAdd is a variable, but unlike previous variables, 
+we do not need to set them in the moment.
+and, we can replace the 10 with the variable
+
+def addTime(timeToAdd):
+	time = time + timeToAdd
+
+okay, but now how do I add a value to my variable?
+you do that when you call the vatiable
+
+addTime(10)
+
+this will add 10 to our time, but now I can do:
+
+addTime(5)
+
+and this will only add 5 to our time
+'''
+
+# I will create a move certain spaces for you, so you can see how it is created
+
+def moveSpaces(spacesToMove):
+	for i in range(0,spacesToMove):
+		move()
+
+# Now, continue the code to try and reach the goal using my function
+
