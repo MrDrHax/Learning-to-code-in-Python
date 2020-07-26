@@ -1,37 +1,69 @@
-<body>
+# Hello!
 
-<h1>Hello!</h1>
-<p>I hope you can find this guide helpfull.
-Here, I will describe hot to get things all started up and working.</p>
+I hope you can find this guide helpfull.
 
-<h2>Introduction...</h2>
+Here, I will describe hot to get things all started up and working.
 
-<p>Before you can start using this software, you will need to download python, and pygame. Follow these steps to download python:</p>
+##Introduction...
 
-<h2>Downloading python</h2>
+Before you can start using this software, you will need to download python, and pygame. Follow these steps to download python:
 
-<p>To download python go to https://www.python.org/downloads/ and download the installer. <br>
+## Downloading python
 
-Once it is downloaded, oppen it. <br>
+To download python go to https://www.python.org/downloads/ and download the installer. 
 
-Follow all the steps, and if you are on Windows, make sure to check the "add to path" checkbox.<br>
+Once it is downloaded, oppen it. 
+
+Follow all the steps, and if you are on Windows, make sure to check the "add to path" checkbox.
 
 
-once you have it downloaded, try oppening a command line terminal (search cmd)<br>
+once you have it downloaded, try oppening a command line terminal (search cmd)
 
-finally, type:<br>
-<br>
+finally, type:
 
-  python<br>
-<br>
-and press enter<br>
-if everything is configured correctly, a python terminall will appear.<br>
+>python
 
-to exit python, type:<br>
-  exit()<br>
-and press enter<br>
+and press enter
+if everything is configured correctly, a python terminall will appear.
 
-do not close the terminal yet, we will be using it later.<br>
-</p>
+to exit python, type:
 
-</body>
+>exit()
+
+and press enter
+
+do not close the terminal yet, we will be using it later.
+
+## Downloading pygame
+
+On the same terminal you had oppen, use the next command:
+
+>pip install pygame
+
+and press enter.
+
+pip (python's package mannager) will install pygame for you, you just go out and get a snack while it is getting downloaded.
+
+if windows sends an error, try using one of the next:
+
+>pip3 install pygame
+
+>python pip install pygame
+
+>python3 pip install pygame
+
+if none of this works, then you are on your own (google it, it should be a quick fix), and make sure that python was installed to path... very important
+
+## Finally, runing the game
+
+Clone the repository to your hard drive (clicking the dowload code tab on https://github.com/MrDrHax/Learning-to-code-in-Python and dowloading as .zip)
+
+Unzip the folder
+
+Enter the folder and find the __init__.py file
+
+Oppen the file, or right-click, and oppen with python
+
+There, all the code should be working, have fun!
+
+#### If you need help with the game, follow the notes left in code. 
