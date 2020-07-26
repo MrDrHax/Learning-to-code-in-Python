@@ -10,23 +10,28 @@ Here, I will describe hot to get things all started up and working.</p>
 
 <h2>Downloading python</h2>
 
-<p>To download python go to https://www.python.org/downloads/ and download the installer. 
-Once it is downloaded, oppen it. 
-Follow all the steps, and if you are on Windows, make sure to check the "add to path" checkbox.
+<p>To download python go to https://www.python.org/downloads/ and download the installer. <br>
 
-once you have it downloaded, try oppening a command line terminal (search cmd)
-finally, type:
+Once it is downloaded, oppen it. <br>
 
-  python
+Follow all the steps, and if you are on Windows, make sure to check the "add to path" checkbox.<br>
 
-and press enter
-if everything is configured correctly, a python terminall will appear.
 
-to exit python, type:
-  exit()
-and press enter
+once you have it downloaded, try oppening a command line terminal (search cmd)<br>
 
-do not close the terminal yet, we will be using it later.
+finally, type:<br>
+<br>
+
+  python<br>
+<br>
+and press enter<br>
+if everything is configured correctly, a python terminall will appear.<br>
+
+to exit python, type:<br>
+  exit()<br>
+and press enter<br>
+
+do not close the terminal yet, we will be using it later.<br>
 </p>
 
 </body>
