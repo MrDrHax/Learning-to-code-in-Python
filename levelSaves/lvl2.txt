@@ -11,6 +11,7 @@ also, you can use n(for next) or b(for back)
 to change the level you are on.
 
 If you need to see a code you did before,
-don't worry, it is automatically saved.
+all levels are stashed as soon as you reaload or change the scene.
+They are saved under the levelSaves folder
 '''
 
