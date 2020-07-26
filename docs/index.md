@@ -4,13 +4,13 @@ I hope you can find this guide helpfull.
 
 Here, I will describe hot to get things all started up and working.
 
-##Introduction...
+## Introduction...
 
 Before you can start using this software, you will need to download python, and pygame. Follow these steps to download python:
 
 ## Downloading python
 
-To download python go to https://www.python.org/downloads/ and download the installer. 
+To download python go to [the python webpage](https://www.python.org/downloads/) and download the installer. 
 
 Once it is downloaded, oppen it. 
 
@@ -56,7 +56,7 @@ if none of this works, then you are on your own (google it, it should be a quick
 
 ## Finally, runing the game
 
-Clone the repository to your hard drive (clicking the dowload code tab on https://github.com/MrDrHax/Learning-to-code-in-Python and dowloading as .zip)
+Clone the repository to your hard drive (clicking the dowload code tab on [my repository](https://github.com/MrDrHax/Learning-to-code-in-Python) and dowloading as .zip)
 
 Unzip the folder
 

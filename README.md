@@ -15,12 +15,18 @@ To run the game, simply run the __init__ file
 
 You can use these commands while on the pygame window:
 
- p - play the game
- l - load game into string
- n - next level
- b - previous level
+>p - play the game
+
+>l - load game into string
+
+>n - next level
+
+>b - previous level
+
+for extra help, go to this webpage https://mrdrhax.github.io/Learning-to-code-in-Python/ I will update everything on there. 
 
 Thanks a lot, I hope you have fun!
 
 this work is protected by the Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)
 you are free to modify or redestribute anything, as long as it is for non-comercial use
+If it is for a comercial use, please send me a mail. 
