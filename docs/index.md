@@ -56,7 +56,7 @@ if none of this works, then you are on your own (google it, it should be a quick
 
 ## Finally, runing the game
 
-Clone the repository to your hard drive (clicking the dowload code tab on [my repository](https://github.com/MrDrHax/Learning-to-code-in-Python) and dowloading as .zip)
+Go to [my repository](https://github.com/MrDrHax/Learning-to-code-in-Python/releases/) and download the latest realease.
 
 Unzip the folder
 
