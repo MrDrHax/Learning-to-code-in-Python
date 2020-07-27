@@ -1,8 +1,8 @@
 # Hello!
 
-I hope you can find this guide helpfull.
+I hope you can find this guide helpful.
 
-Here, I will describe hot to get things all started up and working.
+Here, I will describe how to get things all started up and working.
 
 ## Introduction...
 
@@ -12,19 +12,19 @@ Before you can start using this software, you will need to download python, and 
 
 To download python go to [the python webpage](https://www.python.org/downloads/) and download the installer. 
 
-Once it is downloaded, oppen it. 
+Once it is downloaded, open it. 
 
 Follow all the steps, and if you are on Windows, make sure to check the "add to path" checkbox.
 
 
-once you have it downloaded, try oppening a command line terminal (search cmd)
+once you have it downloaded, try opening a command line terminal (search cmd)
 
 finally, type:
 
 >python
 
 and press enter
-if everything is configured correctly, a python terminall will appear.
+if everything is configured correctly, a python terminal will appear.
 
 to exit python, type:
 
@@ -42,7 +42,7 @@ On the same terminal you had oppen, use the next command:
 
 and press enter.
 
-pip (python's package mannager) will install pygame for you, you just go out and get a snack while it is getting downloaded.
+pip (python's package manager) will install pygame for you, you just go out and get a snack while it is getting downloaded.
 
 if windows sends an error, try using one of the next:
 
@@ -56,13 +56,13 @@ if none of this works, then you are on your own (google it, it should be a quick
 
 ## Finally, runing the game
 
-Go to [my repository](https://github.com/MrDrHax/Learning-to-code-in-Python/releases/) and download the latest realease.
+Go to [my repository](https://github.com/MrDrHax/Learning-to-code-in-Python/releases/) and download the latest release.
 
 Unzip the folder
 
 Enter the folder and find the __init__.py file
 
-Oppen the file, or right-click, and oppen with python
+Open the file, or right-click, and open with python
 
 There, all the code should be working, have fun!
 
