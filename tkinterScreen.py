@@ -173,10 +173,3 @@ class tkinterMain():
         print('running code!')
         self.saveToChash()
         self.runCode(False, self.editor.get('0.0', tk.END))
-
-    def outsideLoop(self):
-        self.tkInterscreen.after(10, self.outsideLoop)
-
-    def show_entry_fields(self):
-        print(self.editor.get(index1="0.0",index2=tk.END))
-

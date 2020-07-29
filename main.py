@@ -68,70 +68,8 @@ class mainGame:
                for event in pygame.event.get():
                     if event.type == pygame.QUIT:
                          self.Quitify()
-
-                    if event.type == pygame.KEYDOWN:
-                         if event.key == pygame.K_w:
-                              self.player.move()
-                         if event.key == pygame.K_a:
-                              self.player.rotateLeft()
-                         if event.key == pygame.K_d:
-                              self.player.rotateRight()
-                         if event.key == pygame.K_l:
-                              self.levelStringToRun = self.levelLoader.cashToString()
-                         if event.key == pygame.K_p:
-                              self.changeLevel(0)
-                              self.levelStringToRun = self.levelLoader.cashToString()
-                              self.sendCode.runInstrucionset(self.levelStringToRun, {
-                                   'move': self.player.move , 
-                                   'rotateLeft': self.player.rotateLeft, 
-                                   'rotateRight': self.player.rotateRight, 
-                                   'getFacing': self.player.getFacing, 
-                                   'getPlayerPos': self.player.getPlayerPos, 
-                                   'getFlagPos': self.player.getFlagPos, 
-                                   'getCristalsCollected': self.player.getCristalsCollected, 
-                                   'getCristalsTotal': self.player.getCristalsTotal,
-                                   'setDelayTime': self.player.setDelayTime
-                              })
-                         if event.key == pygame.K_n:
-                              self.changeLevel()
-                         if event.key == pygame.K_b:
-                              self.changeLevel(-1)
-                         if event.key == pygame.K_r:
-                              self.changeLevel(0)
-               
                pygame.display.update()
                self.FPS.tick(15)
-
-     def pygameLoop(self):
-          """
-          Runs same as runGame(), but does NOT make infinite loop
-          """
-          if self.player.completed:
-               time.sleep(5)
-               self.changeLevel()
-          for event in pygame.event.get():
-               if event.type == pygame.QUIT:
-                    self.Quitify()
-
-               if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_w:
-                         self.player.move()
-                    if event.key == pygame.K_a:
-                         self.player.rotateLeft()
-                    if event.key == pygame.K_d:
-                         self.player.rotateRight()
-                    if event.key == pygame.K_l:
-                         self.levelStringToRun = self.levelLoader.cashToString()
-                    if event.key == pygame.K_p:
-                         self.playCode()
-                    if event.key == pygame.K_n:
-                         self.changeLevel()
-                    if event.key == pygame.K_b:
-                         self.changeLevel(-1)
-                    if event.key == pygame.K_r:
-                         self.changeLevel(0)
-          pygame.display.update()
-          self.FPS.tick(15)
 
      def playCode(self, loadStringfromChash: bool = True, costumString: str = ''):
           self.changeLevel(0)
