@@ -30,30 +30,153 @@
 import tkinter as tk
 from tkinter.scrolledtext import ScrolledText
 
-def show_entry_fields():
-    print(text.get(index1="0.0",index2=tk.END))
+class tkinterMain():
+    def __init__(self,looper, end, run, change, cashtostr, saveIntoChash):
+        # self.loopOutside = looper
+        self.runCode = run
+        self.changeId = change
+        self.cashToString = cashtostr
+        self.updateCash = saveIntoChash
 
-master = tk.Tk()
+        self.commentString = ''
 
-text = ScrolledText(master)
-text.grid(row=1)# tiene que estar despues para que pueda acceder al objeto text
+        self.tkInterscreen = tk.Tk()
 
-tk.Button(master, 
-          text='previous', 
-          command=master.quit).grid(row=3, 
-                                    column=0, 
-                                    sticky=tk.W, 
-                                    pady=4)
-tk.Button(master, 
-          text='next', 
-          command=master.quit).grid(row=3, 
-                                    column=0, 
-                                    sticky=tk.W, 
-                                    pady=30)
-tk.Button(master, 
-          text='Play', command=show_entry_fields).grid(row=3, 
-                                                       column=0, 
-                                                       sticky=tk.E, 
-                                                       pady=4)
+        self.tkInterscreen.protocol("WM_DELETE_WINDOW", end)
 
-tk.mainloop()
+        self.instructionset = ScrolledText(self.tkInterscreen, height = 10)
+        self.instructionset.grid(row=0, column=1, columnspan=3)
+
+        self.editor = ScrolledText(self.tkInterscreen)
+        self.editor.grid(row=1, column=1, sticky="news", columnspan=3)
+
+        self.nextButton = tk.Button(self.tkInterscreen, text = 'Next', command = self.changeTo1 )
+        self.previousButton = tk.Button(self.tkInterscreen, text = 'Previous', command = self.changeToPrevious )
+        self.playButton = tk.Button(self.tkInterscreen, text = 'Run!', command = self.runThemCodes )
+        self.resetButton = tk.Button(self.tkInterscreen, text = 'Reset', command = self.changeTo0 )
+        self.changeLvlButton = tk.Button(self.tkInterscreen, text = 'Change amount', command = self.getAndChangeToInput)
+        self.IDchooser = tk.Entry(self.tkInterscreen)
+
+        self.nextButton.grid(row=3, column=1, sticky="w")
+        self.previousButton.grid(row=3, column=0, sticky="e")
+        self.playButton.grid(row=3, column=2, sticky="e")
+
+        self.resetButton.grid(row=4, column=2, sticky="e")
+        self.changeLvlButton.grid(row=4, column=0, sticky="e")
+
+        self.IDchooser.grid(row=4, column=1, sticky="w")
+        self.IDchooser.insert(10, "+ or - amount")
+
+        self.tkInterscreen.columnconfigure(0, weight=1)
+        self.tkInterscreen.columnconfigure(1, weight=1)
+
+        self.loadFromCash()
+
+        #self.tkInterscreen.after(10, self.outsideLoop())
+
+        #self.tkInterscreen.mainloop()
+
+    def changeTo1(self):
+        self.saveToChash()
+
+        print('changing to:', 1)
+        try:
+            self.changeId()
+        except Exception as e:
+            print('error changing to ID from tkinter', e)
+
+        self.loadFromCash()
+    
+    def changeToPrevious(self):
+        self.saveToChash()
+
+        print('changing to:', -1)
+        try:
+            self.changeId(-1)
+        except Exception as e:
+            print('error changing to ID from tkinter', e)
+
+        self.loadFromCash()
+
+    def changeTo0(self):
+        self.saveToChash()
+
+        print('changing to:', 0)
+        try:
+            self.changeId(0)
+        except Exception as e:
+            print('error changing to ID from tkinter', e)
+
+    def updateSelf(self):
+        self.tkInterscreen.update()
+
+    def getAndChangeToInput(self):
+        self.saveToChash()
+
+        try:
+            toChange = int(self.IDchooser.get())
+            self.changeId(toChange)
+            self.IDchooser.delete(0, tk.END)
+            self.IDchooser.insert(10, "+ or - amount")
+        except:
+            print('enter only numbers please...')
+
+        self.loadFromCash()
+
+    def saveToChash(self):
+        # construct from both comment and get text
+        toSend = self.commentString + self.editor.get('0.0', tk.END)
+
+        # send to cash
+        self.updateCash(toSend)
+
+    def loadFromCash(self):
+        self.instructionset.configure(state='normal')
+        self.editor.delete('0.0', tk.END)
+        self.instructionset.delete('0.0', tk.END)
+
+        returnation = self.cashToString()
+
+        commenting = False
+        commentStr = []
+        editStr = []
+        for i in returnation:
+            if i == "'''":
+                if commenting:
+                    commenting = False
+                    commentStr.append(i)
+                else:
+                    commenting = True
+                    commentStr.append(i)
+            
+            elif commenting:
+                commentStr.append(i)
+            else:
+                editStr.append(i)
+
+        outCommentStr = ''
+        for i in commentStr:
+            outCommentStr = outCommentStr + i  + '\n'
+
+        outEditStr = ''
+        for i in editStr:
+            outEditStr = outEditStr + i  + '\n'
+
+        self.instructionset.insert('0.0', outCommentStr)
+        self.commentString = outCommentStr
+
+        self.editor.insert('0.0', outEditStr)
+
+        self.instructionset.configure(state='disabled')
+
+    def runThemCodes(self):
+        print('running code!')
+        self.saveToChash()
+        self.runCode(False, self.editor.get('0.0', tk.END))
+
+    def outsideLoop(self):
+        self.tkInterscreen.after(10, self.outsideLoop)
+
+    def show_entry_fields(self):
+        print(self.editor.get(index1="0.0",index2=tk.END))
+

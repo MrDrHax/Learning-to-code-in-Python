@@ -8,12 +8,10 @@ To start of, try typing
 
      move()
 
-after this comment (limited by the 3 ')
-
-if you mess up, don't worry, use the r key to reset while focused on the game window (not the notepad)
-
-to play your code just press p, again, focused on the game window
+once you are done, click on Run!
 
 Good luck!
 '''
+move()
+
 

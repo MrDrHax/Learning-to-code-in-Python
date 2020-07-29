@@ -8,4 +8,6 @@ game.configVars()
 
 game.changeLevel(0,False)
 
+game.startTkInter()
+
 game.runGame()

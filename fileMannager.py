@@ -63,6 +63,17 @@ class levelLoad():
           cash.close()
           print('level saved from cash to: ' + safeToLvl)
 
+     def updateCash(self, saveString : str):
+          '''
+          Save from string to cash, overwrites everything!
+          '''
+
+          cash = open(levelLoad.totalFiles['_cashFile'], 'w+')
+
+          cash.write(saveString)
+
+          cash.close()
+
      def cashToString(self):
           '''
           Returns a string of the cash.
@@ -71,14 +82,5 @@ class levelLoad():
           with open(levelLoad.totalFiles['_cashFile']) as cash:
                toReturn = cash.read()
                toReturn = toReturn.splitlines()
-               
-
-          returning = []
-          for i in toReturn:
-               returning.append(i)
-
-          toReturn = ''
-          for i in returning:
-               toReturn = toReturn + i + '\n'
 
           return toReturn

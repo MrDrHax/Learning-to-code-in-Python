@@ -31,6 +31,7 @@ now, we can use the same code, but changing the distance that
 we travel.
 '''
 
+
 # let me first make x
 
 x = 0
@@ -44,4 +45,5 @@ def moveXAmount():
 		move
 
 # try and change x, and then call the function to make your code smaller
+
 

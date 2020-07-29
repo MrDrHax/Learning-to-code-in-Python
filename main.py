@@ -5,6 +5,7 @@ from levelLoader import Level
 from player import Player
 from instructionInterpreter import Interpreter as SendCode
 from fileMannager import levelLoad as LevelLoad
+from tkinterScreen import tkinterMain
 
 class mainGame:
 
@@ -57,6 +58,10 @@ class mainGame:
           """Main function of pygame. All events are handeled here"""
           
           while True:
+
+               # update tkinter
+               self.tkinterObject.updateSelf()
+
                if self.player.completed:
                     time.sleep(5)
                     self.changeLevel()
@@ -96,13 +101,67 @@ class mainGame:
                
                pygame.display.update()
                self.FPS.tick(15)
-	
+
+     def pygameLoop(self):
+          """
+          Runs same as runGame(), but does NOT make infinite loop
+          """
+          if self.player.completed:
+               time.sleep(5)
+               self.changeLevel()
+          for event in pygame.event.get():
+               if event.type == pygame.QUIT:
+                    self.Quitify()
+
+               if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_w:
+                         self.player.move()
+                    if event.key == pygame.K_a:
+                         self.player.rotateLeft()
+                    if event.key == pygame.K_d:
+                         self.player.rotateRight()
+                    if event.key == pygame.K_l:
+                         self.levelStringToRun = self.levelLoader.cashToString()
+                    if event.key == pygame.K_p:
+                         self.playCode()
+                    if event.key == pygame.K_n:
+                         self.changeLevel()
+                    if event.key == pygame.K_b:
+                         self.changeLevel(-1)
+                    if event.key == pygame.K_r:
+                         self.changeLevel(0)
+          pygame.display.update()
+          self.FPS.tick(15)
+
+     def playCode(self, loadStringfromChash: bool = True, costumString: str = ''):
+          self.changeLevel(0)
+          if loadStringfromChash:
+               self.levelStringToRun = self.levelLoader.cashToString()
+          else:
+               self.levelStringToRun = costumString
+          self.sendCode.runInstrucionset(self.levelStringToRun, {
+               'move': self.player.move , 
+               'rotateLeft': self.player.rotateLeft, 
+               'rotateRight': self.player.rotateRight, 
+               'getFacing': self.player.getFacing, 
+               'getPlayerPos': self.player.getPlayerPos, 
+               'getFlagPos': self.player.getFlagPos, 
+               'getCristalsCollected': self.player.getCristalsCollected, 
+               'getCristalsTotal': self.player.getCristalsTotal,
+               'setDelayTime': self.player.setDelayTime
+          })
+
+     def startTkInter(self):
+          self.tkinterObject = tkinterMain(self.pygameLoop, self.Quitify, self.playCode, self.changeLevel, self.levelLoader.cashToString, self.levelLoader.updateCash)
+
      def Quitify(self):
           """Quits, what did you expect?
           """
           self._center_msg("Exiting...")
+          self.tkinterObject.saveToChash()
           pygame.display.update()
           pygame.quit()
+          self.tkinterObject.tkInterscreen.destroy()
           sys.exit("user exit")
 
      def drawObject(self, pos = Vector2(), img = "grass tile.png", image = True, size = Vector2()):
@@ -283,11 +342,17 @@ class mainGame:
           # then, load level assets, to change screen
           self.drawLevel(Level('levels/lvl' + str(levelToChange) + '.txt'))
 
-          # oppen the txt file from the file mannager level loader 
-          dirname = os.path.dirname(__file__)
-          filename = os.path.join(dirname, self.levelLoader.totalFiles['_cashFile'])
-          if sys.platform == "win32":
-               os.startfile(filename)
-          else: # in case it is not windows.... 
-               opener ="open" if sys.platform == "darwin" else "xdg-open"
-               subprocess.call([opener, filename])
+          try:
+               self.tkinterObject.loadFromCash()
+          except:
+               pass
+
+          # oppen the txt file from the file mannager level loader currently not used
+
+          # dirname = os.path.dirname(__file__)
+          # filename = os.path.join(dirname, self.levelLoader.totalFiles['_cashFile'])
+          # if sys.platform == "win32":
+          #      os.startfile(filename)
+          # else: # in case it is not windows.... 
+          #      opener ="open" if sys.platform == "darwin" else "xdg-open"
+          #      subprocess.call([opener, filename])
