@@ -12,6 +12,4 @@ once you are done, click on Run!
 
 Good luck!
 '''
-move()
-
 
