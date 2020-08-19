@@ -90,7 +90,7 @@ class mainGame:
           })
 
      def startTkInter(self):
-          self.tkinterObject = tkinterMain(self.pygameLoop, self.Quitify, self.playCode, self.changeLevel, self.levelLoader.cashToString, self.levelLoader.updateCash)
+          self.tkinterObject = tkinterMain( self.Quitify, self.playCode, self.changeLevel, self.levelLoader.cashToString, self.levelLoader.updateCash)
 
      def Quitify(self):
           """Quits, what did you expect?

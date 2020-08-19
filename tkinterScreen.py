@@ -31,8 +31,8 @@ import tkinter as tk
 from tkinter.scrolledtext import ScrolledText
 
 class tkinterMain():
-    def __init__(self,looper, end, run, change, cashtostr, saveIntoChash):
-        # self.loopOutside = looper
+    def __init__(self, end, run, change, cashtostr, saveIntoChash):
+        
         self.runCode = run
         self.changeId = change
         self.cashToString = cashtostr

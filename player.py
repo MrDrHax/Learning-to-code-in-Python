@@ -46,6 +46,7 @@ class Player:
                                    self.draw(self.flagPos, "flag-2.png")
                     else:
                          print('there is water there, you will get drowned')
+                         return False
                except:
                     print('out of bounds')
           elif self.facing == 'right':
@@ -61,6 +62,7 @@ class Player:
                                    self.draw(self.flagPos, "flag-2.png")
                     else:
                          print('there is water there, you will get drowned')
+                         return False
                except:
                     print('out of bounds')
           elif self.facing == 'left':
@@ -76,6 +78,7 @@ class Player:
                                    self.draw(self.flagPos, "flag-2.png")
                     else:
                          print('there is water there, you will get drowned')
+                         return False
                except:
                     print('out of bounds')
           elif self.facing == 'up':
@@ -91,6 +94,7 @@ class Player:
                                    self.draw(self.flagPos, "flag-2.png")
                     else:
                          print('there is water there, you will get drowned')
+                         return False
                except:
                     print('out of bounds')
           else:
@@ -111,6 +115,8 @@ class Player:
                     print('level finished, congratulations')
                     self.completed = True
                     raise NameError('Completed')
+          
+               return True
           
           except NameError as e:
                raise NameError('Completed')

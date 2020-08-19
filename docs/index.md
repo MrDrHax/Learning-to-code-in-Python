@@ -4,7 +4,13 @@ I hope you can find this guide helpful.
 
 Here, I will describe how to get things all started up and working.
 
-## Introduction...
+## If you know that you are doing:
+
+Go to [my repository](https://github.com/MrDrHax/Learning-to-code-in-Python/releases/) and download the latest release.
+
+for more detailed instructions, continue reading:
+
+## Introductions...
 
 Before you can start using this software, you will need to download python, and pygame. Follow these steps to download python:
 

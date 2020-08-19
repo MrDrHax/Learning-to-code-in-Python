@@ -23,3 +23,14 @@ to get the crystals into a variable you can use
 
 NOTE: crystals will not be updated, if you want to update it, run the same code again!
 '''
+rotateLeft()
+for i in range(16)
+	# add your code under here:
+
+
+
+
+
+
+
+

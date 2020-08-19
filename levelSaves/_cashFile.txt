@@ -1,13 +1,10 @@
 '''
-Perfect!, but what did you just do?
-
-see, in programing, you can tell an object what to do
-in this case, move() makes the object move in the direction it is facing.
-the parenthesis are important, since it describes that it is an action.
-
-This level will require you to grab a crystal.
-To do so, just get on the tile on top of it, you will grab it automatically.
+level is still under construction...
+Thanks for your patience
 '''
+
+
+
 
 
 

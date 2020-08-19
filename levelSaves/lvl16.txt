@@ -1,2 +1,23 @@
+'''
+in this level, the flag spawns randomly in a series of moves.
+this a repeating algorythm that can be solved by doing a simple check,
+every time you use the move() function, the function returns either True
+or False. if you can move, it returns True, but if there was a water block,
+it returns False.
 
+you can do something like:
+
+didItMove = move()
+if(didItMove == False):
+	turnRight()
+
+didItMove becomes either true or false, but it still does the move() function.
+
+you can then use the value of didItMove to do something with it.
+
+try doing the same to pass this :3
+'''
+
+while True:
+	# write everything within this loop. it will run indefenetly.
 

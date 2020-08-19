@@ -1,4 +1,6 @@
 '''
-level is still under construction...
-Thanks for your patience
+in this level, you will have to use everything you have learned so far.
+try using a for and if to turn right or left depending if you have gotten the crystal.
+
+every time you get a crystal, turn right or left.
 '''
